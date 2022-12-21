@@ -1,3 +1,4 @@
 {
-    "liveServer.settings.multiRootWorkspaceName": "shoppingLists"
+    "liveServer.settings.multiRootWorkspaceName": "shoppingList",
+    "liveServer.settings.port": 5501
 }

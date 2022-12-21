@@ -16,7 +16,7 @@ plus_btn.addEventListener('click', () => { // plus 버튼 클릭 시 item 추가
         }, 500
         );
     }
-    else if (count >= 8) {
+    else if (count >= 15) {
         caution_msg.textContent = "Too many items!";
         caution_msg.style.visibility = "visible";
         caution_msg.classList.add('pop');
@@ -35,7 +35,7 @@ plus_btn.addEventListener('click', () => { // plus 버튼 클릭 시 item 추가
 const check_btn = document.querySelector('#check_btn');
 
 check_btn.addEventListener('click', function (e) { // 초기 버튼 삭제
-    check_btn.style.color = 'rgb(0, 183, 255)';
+    check_btn.style.color = 'rgb(0, 255, 60)';
     check_btn.parentNode.parentNode.style.transition='all 200ms ease-out';
     check_btn.parentNode.parentNode.style.opacity='30%';
     check_btn.parentNode.parentNode.style.transform='translateX(-180px)';
@@ -60,7 +60,7 @@ input_box.addEventListener("keydown", function (event) { // 엔터로 추가하�
                 }, 500
                 );
             }
-            else if (count >= 8) {
+            else if (count >= 15) {
                 caution_msg.textContent = "Too many items!";
                 caution_msg.style.visibility = "visible";
                 caution_msg.classList.add('pop');
@@ -96,6 +96,7 @@ function createItemBox(){ // ItemBox 생성
         check_btn.classList.add('fa');
         check_btn.classList.add('fa-check');
         check_btn.setAttribute('isChecked', false);
+        check_btn.setAttribute('id','check_btn');
         list.append(check_btn);
         list.append(trash_btn);
         addRemove(trash_btn);
@@ -121,7 +122,7 @@ function addRemove(btn) { // 버튼 클릭 시 지우기
 function addCheck(btn) {
     btn.addEventListener('click', function (e) {
         if (btn.attributes[1].value == 'false') {
-            btn.style.color = 'rgb(0, 183, 255)';
+            btn.style.color = 'rgb(0, 255, 60)';
             btn.attributes[1].value = 'true';
         }
         else {

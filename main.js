@@ -3,6 +3,7 @@ const plus_btn = document.querySelector('#plus_btn');
 const caution_msg = document.querySelector('.caution_msg');
 const content = document.querySelector('#content');
 const item_box = document.querySelector('.itemBox');
+const item_title = document.querySelector('.item_title');
 var count = 1; // item 개수 초과 방지를 위한 변수
 
 plus_btn.addEventListener('click', () => { // plus 버튼 클릭 시 item 추가
@@ -22,7 +23,7 @@ plus_btn.addEventListener('click', () => { // plus 버튼 클릭 시 item 추가
         caution_msg.classList.add('pop');
         setTimeout(() => {
             caution_msg.style.visibility = "hidden";
-            caution_msg.classList.remove('pop');1
+            caution_msg.classList.remove('pop');
         }, 500
         );
     }
@@ -36,11 +37,11 @@ const check_btn = document.querySelector('#check_btn');
 
 check_btn.addEventListener('click', function (e) { // 초기 버튼 삭제
     check_btn.style.color = 'rgb(0, 255, 60)';
-    check_btn.parentNode.parentNode.style.transition='all 200ms ease-out';
-    check_btn.parentNode.parentNode.style.opacity='30%';
-    check_btn.parentNode.parentNode.style.transform='translateX(-180px)';
+    item_box.style.transition='all 200ms ease-out';
+    item_box.style.opacity='30%';
+    item_box.style.transform='translateX(-180px)';
     setTimeout(() => {
-        check_btn.parentNode.parentNode.remove();
+        content.removeChild(item_box);
     }, 190)
     count--;
 });
@@ -87,7 +88,7 @@ function createItemBox(){ // ItemBox 생성
         h2.classList.add('item_title');
         h2.textContent = msg;
         input_box.value = null;
-        var list = document.createElement('list');
+        var list = document.createElement('li');
         var trash_btn = document.createElement('button');
         trash_btn.classList.add('fa');
         trash_btn.classList.add('fa-trash');
@@ -99,24 +100,22 @@ function createItemBox(){ // ItemBox 생성
         check_btn.setAttribute('id','check_btn');
         list.append(check_btn);
         list.append(trash_btn);
-        addRemove(trash_btn);
+        // addRemove(trash_btn);
+        trash_btn.addEventListener('click',( e =>{          
+            itemBox.style.transition='all 200ms ease-out';
+            itemBox.style.opacity='30%';
+            itemBox.style.transform='translateX(-180px)'; // 삭제 애니메이션 추가
+        setTimeout(() => {
+            content.removeChild(itemBox);
+        }, 190)
+        count--;
+
+        }))
         addCheck(check_btn);
         itemBox.append(h2);
         itemBox.append(list);
         content.append(itemBox);
         count++;
-}
-
-function addRemove(btn) { // 버튼 클릭 시 지우기
-    btn.addEventListener('click', function (e) {
-        btn.parentNode.parentNode.style.transition='all 200ms ease-out';
-        btn.parentNode.parentNode.style.opacity='30%';
-        btn.parentNode.parentNode.style.transform='translateX(-180px)'; // 삭제 애니메이션 추가
-        setTimeout(() => {
-            btn.parentNode.parentNode.remove();
-        }, 190)
-        count--;
-    });
 }
 
 function addCheck(btn) {
@@ -132,5 +131,6 @@ function addCheck(btn) {
     });
 
 }
+
 
 
